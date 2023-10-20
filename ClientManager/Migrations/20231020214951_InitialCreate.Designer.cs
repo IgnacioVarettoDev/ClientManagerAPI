@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClientManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231019212357_Initial")]
-    partial class Initial
+    [Migration("20231020214951_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,8 @@ namespace ClientManager.Migrations
 
             modelBuilder.Entity("ClientManagerDTO.Entity.Client", b =>
                 {
-                    b.Property<string>("ClientID")
+                    b.Property<Guid>("ClientId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Address")
@@ -32,7 +33,7 @@ namespace ClientManager.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -41,26 +42,34 @@ namespace ClientManager.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Married")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Rut")
                         .IsRequired()
+                        .HasMaxLength(10)
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ClientID");
+                    b.HasKey("ClientId");
 
-                    b.ToTable("client");
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Rut")
+                        .IsUnique();
+
+                    b.ToTable("Client");
                 });
 #pragma warning restore 612, 618
         }

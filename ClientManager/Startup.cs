@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClientManager.Middleware;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 namespace ClientManager
@@ -25,6 +26,7 @@ namespace ClientManager
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -1,8 +1,9 @@
-﻿using ClientManagerDTO.ClientDTO;
+﻿using ClientManager.Constant;
 using ClientManagerDTO.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Xml.Linq;
+using static ClientManager.Constant.NameEndpointMethods;
+using static ClientManager.Constant.NameEndpointMethods.NameEndpointClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,81 +14,120 @@ namespace ClientManager.Controllers
     public class ClientController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ClientController(ApplicationDbContext context) {
+        private readonly ILogger<ClientController> _logger;
+        public ClientController(ApplicationDbContext context, ILogger<ClientController> logger) {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: api/<ClientController>
-        [HttpGet(Name = "getAllClient")]
+        [HttpGet(template:"ListClient", Name = GetAll)]
         public async Task<ActionResult<List<Client>>> GetAllClient()
         {
             try
-            {
-                return await _context.Client.ToListAsync();
+            {   
+                var clientList = await _context.Client.ToListAsync();
+                if (clientList.Count < 1)
+                {
+                    return NotFound();
+                }
+                return Ok(clientList);
             }
             catch (Exception)
             {
-                throw;
+                return BadRequest(error: "Error en la ejecucion de peticion HTTP.");
             }
         }
 
-        // GET api/<ClientController>/5
-        [HttpGet("{clientID:string}", Name = "getOneClientById")]
-        public async Task<ActionResult<Client>> GetOneClientById([FromRoute] string clientId)
+        [HttpGet(template:"{clientId:guid}", Name = GetOneById)]
+        public async Task<ActionResult<Client>> GetOneClientById([FromRoute] Guid clientId)
         {
-            return await _context.Client.FirstOrDefaultAsync(client => client.ClientId == clientId);
+            try
+            {
+                var existClient = await _context.Client.FirstOrDefaultAsync(client => client.ClientId == clientId);
+                if (existClient == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(existClient);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(error: "Error en el cliente");
+            }
+
         }
 
-        // GET api/<ClientController>/5
-        [HttpGet("search", Name = "getSearchClient")]
+        [HttpGet(template:"search", Name = GetSearch)]
         public string GetSearchClient([FromQuery] string name)
         {
+            throw new NotImplementedException();
             return name;
         }
 
-        // POST api/<ClientController>
-        [HttpPost(Name = "createNewClient")]
+        [HttpPost(Name = CreateNew)]
         public async Task<ActionResult>  CreateNewClient([FromBody] Client client)
         {
-            _context.Add(client);
-            await _context.SaveChangesAsync();
-            return Ok();
+            try
+            {
+                _context.Add(client);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(error: "Error en el cliente " + e);
+            }
+
         }
 
-        // PUT api/<ClientController>/5
-        [HttpPut("{clientID:string}", Name = "updateOneClient")]
-        public async Task<ActionResult> UpdateOneClient([FromRoute] string clientId, [FromBody] Client client)
+        [HttpPut(template: "{clientId:guid}", Name = UpdateOne)]
+        public async Task<ActionResult> UpdateOneClient([FromRoute] Guid clientId, [FromBody] Client client)
         {
-            if (client.ClientId != clientId)
+            try
             {
-                return BadRequest("El ID del cliente no coincide con el ID de la URL.");
-            }
+                if (client.ClientId != clientId)
+                {
+                    return BadRequest(error: "El ID del cliente no coincide con el ID de la URL.");
+                }
 
-            var existClient = await _context.Client.AnyAsync(clientAny => clientAny.ClientId == clientId);
-            if (!existClient)
+                var existClient = await _context.Client.AnyAsync(clientAny => clientAny.ClientId == clientId);
+
+                if (!existClient)
+                {
+                    return NotFound();
+                }
+
+                _context.Update(client);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (Exception e)
             {
-                return NotFound();
+                return BadRequest(error: "Error en el cliente");
             }
-
-            _context.Update(client);
-            await _context.SaveChangesAsync();
-
-
-            return Ok();
         }
 
-        // DELETE api/<ClientController>/5
-        [HttpDelete("{clientID:string}", Name = "deleteOneClientById")]
-        public async Task<ActionResult> DeleteOneClientById([FromRoute] string clientId)
+        [HttpDelete(template: "{clientId:guid}", Name = DeleteOneById)]
+        public async Task<ActionResult> DeleteOneClientById([FromRoute] Guid clientId)
         {
-            var existClient  = await _context.Client.AnyAsync(clientID => clientID.ClientId == clientId);
-            if (!existClient)
+
+            try
             {
-               return NotFound(); 
+                var existClient = await _context.Client.AnyAsync(clientAny => clientAny.ClientId == clientId);
+                if (!existClient)
+                {
+                    return NotFound();
+                }
+                _context.Remove(entity:new Client() { ClientId = clientId });
+                await _context.SaveChangesAsync();
+                return Ok();
             }
-            _context.Remove(new Client() { ClientId = clientId });
-            await _context.SaveChangesAsync();
-            return Ok();
+            catch (Exception e)
+            {
+                return BadRequest(error: "Error en el cliente");
+            }
         }
     }
 }

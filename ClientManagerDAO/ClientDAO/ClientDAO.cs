@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClientManagerDAO.ClientManager
 {
-    internal class ClientDAO
+    public class ClientDAO
     {
+        public ClientDAO() { }
     }
 }

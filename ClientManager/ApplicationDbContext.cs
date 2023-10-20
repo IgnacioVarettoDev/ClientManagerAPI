@@ -9,6 +9,18 @@ namespace ClientManager
         {
         }
 
-        public DbSet<Client> Client { get; set; }   
+        public DbSet<Client> Client { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Client>()
+                .HasKey(e => e.ClientId);
+            modelBuilder.Entity<Client>()
+                .HasIndex(e => e.Email)
+                .IsUnique();
+            modelBuilder.Entity<Client>()
+                .HasIndex(e => e.Rut)
+                .IsUnique();
+        }
     }
 }
