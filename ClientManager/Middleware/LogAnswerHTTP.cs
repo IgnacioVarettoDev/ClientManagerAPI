@@ -1,4 +1,6 @@
-﻿namespace ClientManager.Middleware
+﻿using ClientManager.Service;
+
+namespace ClientManager.Middleware
 {
 
     public static class LogAnswerHTTPExtensions
@@ -14,12 +16,14 @@
     {
         private readonly RequestDelegate next;
         private readonly ILogger<LogAnswerHTTP> logger;
+        private readonly LogHttpService _logService;
 
         public LogAnswerHTTP(RequestDelegate next,
-            ILogger<LogAnswerHTTP> logger)
+            ILogger<LogAnswerHTTP> logger, LogHttpService logService)
         {
             this.next = next;
             this.logger = logger;
+            _logService = logService;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -38,9 +42,12 @@
                 await ms.CopyToAsync(body);
                 context.Response.Body = body;
 
+                string requestInfo = $"Request finished {context.Request.Protocol} {context.Request.Method} {context.Request.Path}";
+                string responseInfo = $"Response {context.Response.StatusCode} - {context.Response.ContentType} {context.Response.ContentLength} bytes {context.Response.Headers["elapsed-time"]}ms";
+
+                _logService.WriteHttp($"{requestInfo} - {responseInfo}");
                 logger.LogInformation(answer);
             }
         }
-        
     }
 }

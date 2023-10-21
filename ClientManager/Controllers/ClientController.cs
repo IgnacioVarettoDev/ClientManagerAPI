@@ -1,7 +1,9 @@
 ﻿using ClientManagerDTO.Entity;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using ClientManagerDTO.ClientDTO;
 using static ClientManager.Constant.NameEndpointMethods.NameEndpointClient;
 using ExceptionHandler = ClientManagerDAO.Exceptions.ExceptionHandler;
 
@@ -14,17 +16,19 @@ namespace ClientManager.Controllers
     public class ClientController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<ClientController> _logger;
-        public ClientController(ApplicationDbContext context, ILogger<ClientController> logger) {
+        private readonly IMapper _mapper;
+
+        public ClientController(ApplicationDbContext context, IMapper mapper)
+        {
             _context = context;
-            _logger = logger;
+            _mapper = mapper;
         }
 
-        [HttpGet(template:"ListClient", Name = GetAll)]
+        [HttpGet(template: "ListClient", Name = GetAll)]
         public async Task<ActionResult<List<Client>>> GetAllClient()
         {
             try
-            {   
+            {
                 var clientList = await _context.Client.ToListAsync();
                 if (clientList.Count < 1)
                 {
@@ -35,15 +39,15 @@ namespace ClientManager.Controllers
             }
             catch (ValidationException)
             {
-                return BadRequest(error:"La solicitud es inválida.");
+                return BadRequest(error: "La solicitud es inválida.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value:"Se produjo un error interno en el servidor.");
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
             }
         }
 
-        [HttpGet(template:"{clientId:guid}", Name = GetOneById)]
+        [HttpGet(template: "{clientId:guid}", Name = GetOneById)]
         public async Task<ActionResult<Client>> GetOneClientById([FromRoute] Guid clientId)
         {
             try
@@ -66,18 +70,52 @@ namespace ClientManager.Controllers
             }
         }
 
-        [HttpGet(template:"search", Name = GetSearch)]
-        public string GetSearchClient([FromQuery] string name)
-        {
-            throw new NotImplementedException();
-            return name;
-        }
-
-        [HttpPost(Name = CreateNew)]
-        public async Task<ActionResult>  CreateNewClient([FromBody] Client client)
+        [HttpGet(template: "search", Name = GetSearch)]
+        public async Task<ActionResult<Client[]>> GetSearchClient([FromQuery] string search, Client e)
         {
             try
             {
+
+                var results = await _context.Client
+                    .Where(e =>
+                        e.Rut.Contains(search) ||
+                        e.FirstName.Contains(search) ||
+                        e.LastName.Contains(search) ||
+                        e.Married.ToString().Contains(search) ||
+                        e.Address.Contains(search) ||
+                        (e.PhoneNumber != null && e.PhoneNumber.Contains(search)) ||
+                        e.Email.Contains(search) || 
+                        (e.DateOfBirth != null && e.DateOfBirth.ToString().Contains(search))||
+                        e.Age.ToString().Contains(search)
+                    )
+                    .ToListAsync();
+
+                if (results.Count < 1)
+                {
+                    return NotFound("No se encontro informacion con esta busqueda.");
+                }
+
+                return Ok(results);
+            }
+            catch (ValidationException)
+            {
+                return BadRequest(error: "La solicitud es inválida.");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+            }
+
+        }
+
+
+        [HttpPost(Name = CreateNew)]
+        public async Task<ActionResult> CreateNewClient([FromBody] CreateClientDTO clientCreate)
+        {
+            try
+            {
+                var client = _mapper.Map<Client>(clientCreate);
+                client.ClientId = Guid.NewGuid();
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -90,10 +128,10 @@ namespace ClientManager.Controllers
             {
                 if (ExceptionHandler.IsUniqueViolationException(ex))
                 {
-                    return BadRequest(error:"El registro tiene valores que ya existen en la Base de datos. Puede ser Rut o Email");
+                    return BadRequest(error: "El registro tiene valores que ya existen en la Base de datos. Puede ser Rut o Email");
                 }
 
-                return StatusCode(500, value:"Se produjo un error interno en el servidor.");
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
             }
             catch (Exception)
             {
@@ -144,7 +182,7 @@ namespace ClientManager.Controllers
                 {
                     return NotFound("No se encontro el cliente.");
                 }
-                _context.Remove(entity:new Client() { ClientId = clientId });
+                _context.Remove(entity: new Client() { ClientId = clientId });
                 await _context.SaveChangesAsync();
                 return Ok();
             }

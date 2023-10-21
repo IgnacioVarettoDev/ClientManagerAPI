@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using ClientManager.ActionController;
 using ClientManager.Service;
+using Microsoft.OpenApi.Models;
 
 namespace ClientManager
 {
@@ -17,6 +18,7 @@ namespace ClientManager
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<LogHttpService>();
             services.AddControllers(option =>
             {
                 option.Filters.Add(typeof(ExceptionFilter));
@@ -25,8 +27,15 @@ namespace ClientManager
 
             services.AddDbContext<ApplicationDbContext>(optionsAction:options => options.UseSqlite(Configuration.GetConnectionString(name:"DefaultConnection")));
             services.AddHostedService<LogService>();
+
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ClientMangerAPI", Version = "v1" });
+            });
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
