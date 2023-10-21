@@ -1,9 +1,9 @@
-﻿using ClientManager.Constant;
-using ClientManagerDTO.Entity;
+﻿using ClientManagerDTO.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static ClientManager.Constant.NameEndpointMethods;
+using System.ComponentModel.DataAnnotations;
 using static ClientManager.Constant.NameEndpointMethods.NameEndpointClient;
+using ExceptionHandler = ClientManagerDAO.Exceptions.ExceptionHandler;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,13 +28,18 @@ namespace ClientManager.Controllers
                 var clientList = await _context.Client.ToListAsync();
                 if (clientList.Count < 1)
                 {
-                    return NotFound();
+                    return NotFound("No se encontraron clientes.");
                 }
+
                 return Ok(clientList);
+            }
+            catch (ValidationException)
+            {
+                return BadRequest(error:"La solicitud es inválida.");
             }
             catch (Exception)
             {
-                return BadRequest(error: "Error en la ejecucion de peticion HTTP.");
+                return StatusCode(500, value:"Se produjo un error interno en el servidor.");
             }
         }
 
@@ -46,16 +51,19 @@ namespace ClientManager.Controllers
                 var existClient = await _context.Client.FirstOrDefaultAsync(client => client.ClientId == clientId);
                 if (existClient == null)
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el cliente.");
                 }
 
                 return Ok(existClient);
             }
-            catch (Exception e)
+            catch (ValidationException)
             {
-                return BadRequest(error: "Error en el cliente");
+                return BadRequest(error: "La solicitud es inválida.");
             }
-
+            catch (Exception)
+            {
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+            }
         }
 
         [HttpGet(template:"search", Name = GetSearch)]
@@ -74,11 +82,23 @@ namespace ClientManager.Controllers
                 await _context.SaveChangesAsync();
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException)
             {
-                return BadRequest(error: "Error en el cliente " + e);
+                return BadRequest(error: "La solicitud es inválida.");
             }
+            catch (DbUpdateException ex)
+            {
+                if (ExceptionHandler.IsUniqueViolationException(ex))
+                {
+                    return BadRequest(error:"El registro tiene valores que ya existen en la Base de datos. Puede ser Rut o Email");
+                }
 
+                return StatusCode(500, value:"Se produjo un error interno en el servidor.");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+            }
         }
 
         [HttpPut(template: "{clientId:guid}", Name = UpdateOne)]
@@ -95,7 +115,7 @@ namespace ClientManager.Controllers
 
                 if (!existClient)
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el cliente.");
                 }
 
                 _context.Update(client);
@@ -103,9 +123,13 @@ namespace ClientManager.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException)
             {
-                return BadRequest(error: "Error en el cliente");
+                return BadRequest(error: "La solicitud es inválida.");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
             }
         }
 
@@ -118,15 +142,19 @@ namespace ClientManager.Controllers
                 var existClient = await _context.Client.AnyAsync(clientAny => clientAny.ClientId == clientId);
                 if (!existClient)
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el cliente.");
                 }
                 _context.Remove(entity:new Client() { ClientId = clientId });
                 await _context.SaveChangesAsync();
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException)
             {
-                return BadRequest(error: "Error en el cliente");
+                return BadRequest(error: "La solicitud es inválida.");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
             }
         }
     }
