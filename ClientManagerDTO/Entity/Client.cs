@@ -1,18 +1,18 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using ClientManagerDTO.Validation;
 
 namespace ClientManagerDTO.Entity
 {
-    public class Client: IValidatableObject
+    public class Client : IValidatableObject
     {
-        
+
         [Required(ErrorMessage = "El campo {0} es requerido.")]
         public Guid ClientId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido.")]
         [MinLength(9, ErrorMessage = "El campo {0} debe tener como mínimo {1} caracteres.")]
         [MaxLength(10, ErrorMessage = "El campo {0} no debe tener más de {1} caracteres.")]
+        [RutValidation]
         public string Rut { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo {0} es requerido.")]
@@ -22,12 +22,12 @@ namespace ClientManagerDTO.Entity
 
         [Required(ErrorMessage = "El campo {0} es requerido.")]
         [StringLength(maximumLength: 30, ErrorMessage = "El campo {0} no debe tener más de {1} caracteres.")]
+        [WordValidation]
         public string LastName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo {0} es requerido.")]
         public bool Married { get; set; } = false;
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; } = DateTime.MinValue;
 
         [Required(ErrorMessage = "El campo {0} es requerido.")]
@@ -53,7 +53,7 @@ namespace ClientManagerDTO.Entity
 
                 if (yearNow - Age != yearBirth)
                 {
-                    yield return new ValidationResult("El campo Age no coincide con el campo DateOfBirth.");
+                    yield return new ValidationResult(errorMessage: "El campo Age no coincide con el campo DateOfBirth.", memberNames: new List<string>() { nameof(Age) });
                 }
             }
         }
