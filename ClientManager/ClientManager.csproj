@@ -20,4 +20,10 @@
     <ProjectReference Include="..\ClientManagerDTO\ClientManagerDTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ActionController\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,8 @@
 ﻿using ClientManager.Middleware;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using ClientManager.ActionController;
+using ClientManager.Service;
 
 namespace ClientManager
 {
@@ -15,18 +17,21 @@ namespace ClientManager
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddJsonOptions(x =>
+            services.AddControllers(option =>
+            {
+                option.Filters.Add(typeof(ExceptionFilter));
+            }).AddJsonOptions(x =>
             x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddDbContext<ApplicationDbContext>(optionsAction:options => options.UseSqlite(Configuration.GetConnectionString(name:"DefaultConnection")));
+            services.AddHostedService<LogService>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-
+            app.UseLogAnswerHTTP();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
