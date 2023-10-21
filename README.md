@@ -33,7 +33,7 @@ Esto iniciará la API en tu máquina local.
 | - `POST /api/client` | &#9745;    |
 | - `PUT /api/client/{id}` | &#9745; |
 | - `GET /api/client`  | &#9745;    |
-| - `DELETE /api/client/{id}` |      |
+| - `DELETE /api/client/{id}` | &#9745;  |
 | - `GET /api/client/{id}` | &#9745; |
 | Manejo de excepciones |          |
 | Control de logs      |          |
