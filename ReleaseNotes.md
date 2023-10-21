@@ -3,11 +3,10 @@
 ## Novedades
 - **Lanzamiento Inicial:** Este es el primer lanzamiento del proyecto. ¡Bienvenido!
 
-## Funcionalidades
+## Caracteristicas
 - **Conexion a una BD SQLite:** Se conecta a la BD ClientManager, generada en el mismo proyecto mediante EntityFramework.
 - **API para manejar clientes:** Disponible el CRUD completo clientes, CREATE, READ, DELETE y UPDATE, LIST ALL CLIENTs.
 - **Validadores:** Los campos del cliente tiene validadores y requerimientos para ser ingresados.
-- **Guid:** El ID es Guid unico, y no es autoincrementable.
 - **Guid:** El ID es Guid unico, y no es autoincrementable.
 
 ## Mejoras
