@@ -14,12 +14,12 @@ namespace ClientManager
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>()
-                .HasKey(e => e.ClientId);
+                .HasKey(e => e.clientId);
             modelBuilder.Entity<Client>()
-                .HasIndex(e => e.Email)
+                .HasIndex(e => e.email)
                 .IsUnique();
             modelBuilder.Entity<Client>()
-                .HasIndex(e => e.Rut)
+                .HasIndex(e => e.rut)
                 .IsUnique();
         }
     }

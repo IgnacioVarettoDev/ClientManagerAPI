@@ -1,1 +1,220 @@
 Proceso en ejecucion: 21-10-2023 07:50:44
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 08:23:20
+HTTP: 21-10-2023 08:23:21
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:23:22
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 08:24:20
+HTTP: 21-10-2023 08:24:22
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 200 -   bytes ms
+Proceso en ejecucion: 21-10-2023 08:25:20
+Proceso en ejecucion: 21-10-2023 08:26:20
+Proceso en ejecucion: 21-10-2023 08:27:20
+Proceso en ejecucion: 21-10-2023 08:28:20
+Proceso en ejecucion: 21-10-2023 08:29:20
+Proceso en ejecucion: 21-10-2023 08:30:20
+Proceso en ejecucion: 21-10-2023 08:31:20
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 08:32:11
+HTTP: 21-10-2023 08:32:13
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:32:13
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:32:57
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 08:33:11
+HTTP: 21-10-2023 08:33:16
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:33:24
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - text/plain; charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:33:31
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 200 -   bytes ms
+Proceso en ejecucion: 21-10-2023 08:34:11
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 08:34:47
+HTTP: 21-10-2023 08:34:48
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:34:48
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:35:01
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - text/plain; charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:35:07
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - text/plain; charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:35:15
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 08:35:31
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 200 -   bytes ms
+Proceso en ejecucion: 21-10-2023 08:35:47
+Proceso en ejecucion: 21-10-2023 08:36:47
+Proceso en ejecucion: 21-10-2023 08:37:47
+Proceso en ejecucion: 21-10-2023 08:38:47
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:37:38
+HTTP: 21-10-2023 09:37:40
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:37:41
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:37:47
+HTTP: 21-10-2023 09:37:49
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:37:49
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:37:50
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:41:03
+HTTP: 21-10-2023 09:41:05
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:41:05
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:41:54
+HTTP: 21-10-2023 09:41:55
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:41:56
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 09:42:54
+Proceso en ejecucion: 21-10-2023 09:43:54
+Proceso en ejecucion: 21-10-2023 09:44:54
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:45:51
+HTTP: 21-10-2023 09:45:52
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:45:53
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:48:33
+HTTP: 21-10-2023 09:48:35
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:48:35
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:49:11
+HTTP: 21-10-2023 09:49:13
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:49:13
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:50:11
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 09:50:11
+HTTP: 21-10-2023 09:50:28
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:50:36
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 200 -   bytes ms
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 09:51:13
+HTTP: 21-10-2023 09:51:15
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:51:15
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:52:07
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 09:52:13
+HTTP: 21-10-2023 09:52:21
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:52:26
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - application/problem+json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:52:32
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 400 - text/plain; charset=utf-8  bytes ms
+HTTP: 21-10-2023 09:52:51
+REQUEST RESPONSE: Request finished HTTP/2 POST /api/Client - Response 200 -   bytes ms
+HTTP: 21-10-2023 09:53:00
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 09:53:13
+Proceso en ejecucion: 21-10-2023 09:54:13
+Proceso en ejecucion: 21-10-2023 09:55:13
+Proceso en ejecucion: 21-10-2023 09:56:13
+Proceso en ejecucion: 21-10-2023 09:57:13
+Proceso en ejecucion: 21-10-2023 09:58:13
+Proceso en ejecucion: 21-10-2023 09:59:13
+Proceso en ejecucion: 21-10-2023 10:00:13
+Proceso en ejecucion: 21-10-2023 10:01:13
+Proceso en ejecucion: 21-10-2023 10:02:13
+Proceso en ejecucion: 21-10-2023 10:03:13
+HTTP: 21-10-2023 10:03:37
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/search - Response 200 - application/json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:04:13
+HTTP: 21-10-2023 10:04:20
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/2cae128f-8f8f-4684-bc9d-cf699e377518 - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:04:53
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:04:53
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:05:13
+Proceso en ejecucion: 21-10-2023 10:06:13
+Proceso en ejecucion: 21-10-2023 10:07:13
+Proceso en ejecucion: 21-10-2023 10:08:13
+Proceso en ejecucion: 21-10-2023 10:09:13
+Proceso en ejecucion: 21-10-2023 10:10:13
+Proceso en ejecucion: 21-10-2023 10:11:13
+Proceso en ejecucion: 21-10-2023 10:12:13
+Proceso en ejecucion: 21-10-2023 10:13:13
+Proceso en ejecucion: 21-10-2023 10:14:13
+Proceso en ejecucion: 21-10-2023 10:15:13
+Proceso en ejecucion: 21-10-2023 10:16:13
+Proceso en ejecucion: 21-10-2023 10:17:13
+Proceso en ejecucion: 21-10-2023 10:18:13
+Proceso en ejecucion: 21-10-2023 10:19:13
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 10:19:23
+HTTP: 21-10-2023 10:19:25
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:19:25
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:19:41
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:20:23
+HTTP: 21-10-2023 10:20:54
+REQUEST RESPONSE: Request finished HTTP/2 PUT /api/Client/2cae128f-8f8f-4684-bc9d-cf699e377518 - Response 500 - text/plain; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:21:24
+Proceso en ejecucion: 21-10-2023 10:22:25
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 10:24:24
+HTTP: 21-10-2023 10:24:26
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:24:26
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:24:56
+REQUEST RESPONSE: Request finished HTTP/2 PUT /api/Client/2cae128f-8f8f-4684-bc9d-cf699e377518 - Response 400 - application/problem+json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:25:21
+REQUEST RESPONSE: Request finished HTTP/2 PUT /api/Client/2cae128f-8f8f-4684-bc9d-cf699e377518 - Response 400 - application/problem+json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:25:24
+HTTP: 21-10-2023 10:25:39
+REQUEST RESPONSE: Request finished HTTP/2 PUT /api/Client/2cae128f-8f8f-4684-bc9d-cf699e377518 - Response 200 -   bytes ms
+HTTP: 21-10-2023 10:25:45
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:26:24
+Proceso en ejecucion: 21-10-2023 10:27:24
+Proceso en ejecucion: 21-10-2023 10:28:24
+Proceso en ejecucion: 21-10-2023 10:29:24
+Proceso Iniciado.
+Proceso en ejecucion: 21-10-2023 10:30:12
+HTTP: 21-10-2023 10:30:14
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/index.html - Response 200 - text/html;charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:30:14
+REQUEST RESPONSE: Request finished HTTP/2 GET /swagger/v1/swagger.json - Response 200 - application/json;charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:30:31
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+Proceso en ejecucion: 21-10-2023 10:31:31
+Proceso en ejecucion: 21-10-2023 10:32:19
+Proceso en ejecucion: 21-10-2023 10:33:12
+HTTP: 21-10-2023 10:33:15
+REQUEST RESPONSE: Request finished HTTP/2 PUT /api/Client/2cae128f-8f8f-4684-bc9d-cf699e377518 - Response 200 -   bytes ms
+HTTP: 21-10-2023 10:33:22
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:27
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:28
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:29
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:29
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:29
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:29
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
+HTTP: 21-10-2023 10:33:29
+REQUEST RESPONSE: Request finished HTTP/2 GET /api/Client/ListClient - Response 200 - application/json; charset=utf-8  bytes ms
