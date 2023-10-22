@@ -9,13 +9,13 @@ Para ejecutar este proyecto en tu entorno local, sigue los siguientes pasos:
 
 1. Clona este repositorio en tu máquina local:
 
-git clone https://github.com/tu-usuario/client-management-api.git
+git clone https://github.com/IgnacioVarettoDev/ClientManagerAPI
 
 2. Abre el proyecto en tu IDE de desarrollo favorito, como Visual Studio o Visual Studio Code.
 
 3. Asegúrate de que tengas instalado .NET Core en tu sistema.
 
-4. En el archivo de configuración `appsettings.json`, configura la cadena de conexión a tu base de datos SQL Lite.
+4. En el archivo de configuración `appsettings.json`, se encuentra la cadena de conexión a la base de datos SQL Lite.
 
 5. Abre una terminal en el directorio del proyecto y ejecuta los siguientes comandos:
 
@@ -29,12 +29,12 @@ Esto iniciará la API en tu máquina local.
 | -------------------- | --------- |
 | Uso de SQLite        | &#9745;    |
 | Crear Tabla Client   | &#9745;    |
-| Generar endpoints    |           |
+| Generar endpoints    |   &#9745;         |
 | - `POST /api/client` | &#9745;    |
 | - `PUT /api/client/{id}` | &#9745; |
 | - `GET /api/client`  | &#9745;    |
 | - `DELETE /api/client/{id}` | &#9745;  |
 | - `GET /api/client/{id}` | &#9745; |
-| Manejo de excepciones |          |
-| Control de logs      |          |
+| Manejo de excepciones |   &#9745;        |
+| Control de logs      |    &#9745;       |
 | Compatible con Postman | &#9745;   |
