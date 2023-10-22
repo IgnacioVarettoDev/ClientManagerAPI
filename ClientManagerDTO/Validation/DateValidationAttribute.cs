@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ClientManagerDTO.Validation
 {
@@ -15,8 +10,6 @@ namespace ClientManagerDTO.Validation
             {
                 return ValidationResult.Success;
             }
-
-            var firstLetter = value.ToString()[0].ToString();
 
             if (value is DateTime date)
             {

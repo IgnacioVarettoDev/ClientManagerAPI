@@ -1,61 +1,28 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using ClientManagerDTO.Validation;
-
-namespace ClientManagerDTO.Entity
+﻿namespace ClientManagerDTO.Entity
 {
-    public class Client: IValidatableObject
+    public class Client 
     {
-        
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        public Guid ClientId { get; set; }
+        public Guid clientId { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        [MinLength(9, ErrorMessage = "El campo {0} debe tener como mínimo {1} caracteres.")]
-        [MaxLength(10, ErrorMessage = "El campo {0} no debe tener más de {1} caracteres.")]
-        public string Rut { get; set; } = string.Empty;
+        public string rut { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        [StringLength(maximumLength: 30, ErrorMessage = "El campo {0} no debe tener más de {1} caracteres.")]
-        [WordValidation]
-        public string FirstName { get; set; } = string.Empty;
+        public string firstName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        [StringLength(maximumLength: 30, ErrorMessage = "El campo {0} no debe tener más de {1} caracteres.")]
-        public string LastName { get; set; } = string.Empty;
+        public string lastName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        public bool Married { get; set; } = false;
+        public bool married { get; set; } = false;
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime? DateOfBirth { get; set; } = DateTime.MinValue;
+        public DateTime? dateOfBirth { get; set; } = DateTime.MinValue;
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        [Range(18, 120, ErrorMessage = "El campo {0} debe estar entre {1} y {2}")]
-        public int Age { get; set; } = 0;
+        public int age { get; set; } = 0;
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        public string Address { get; set; } = string.Empty;
+        public string address { get; set; } = string.Empty;
 
-        [Phone(ErrorMessage = "El campo {0} debe ser un número telefónico.")]
-        public string? PhoneNumber { get; set; }
+        public string? phoneNumber { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es requerido.")]
-        [EmailAddress(ErrorMessage = "El campo {0} debe ser un correo electrónico.")]
-        public string Email { get; set; } = string.Empty;
+        public string email { get; set; } = string.Empty;
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (DateOfBirth.HasValue)
-            {
-                var yearBirth = DateOfBirth.Value.Year;
-                var yearNow = DateTime.Now.Year;
-
-                if (yearNow - Age != yearBirth)
-                {
-                    yield return new ValidationResult("El campo Age no coincide con el campo DateOfBirth.");
-                }
-            }
-        }
+        public DateTime registerClient { get; set; } = DateTime.MinValue;
+        public DateTime? updateClient { get; set; } = DateTime.MinValue;
     }
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClientManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231020214951_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231022004814_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,51 +22,54 @@ namespace ClientManager.Migrations
 
             modelBuilder.Entity("ClientManagerDTO.Entity.Client", b =>
                 {
-                    b.Property<Guid>("ClientId")
+                    b.Property<Guid>("clientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("address")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Age")
+                    b.Property<int>("age")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime?>("dateOfBirth")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("firstName")
                         .IsRequired()
-                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("lastName")
                         .IsRequired()
-                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Married")
+                    b.Property<bool>("married")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("phoneNumber")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Rut")
+                    b.Property<DateTime>("registerClient")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("rut")
                         .IsRequired()
-                        .HasMaxLength(10)
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ClientId");
+                    b.Property<DateTime?>("updateClient")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("Email")
+                    b.HasKey("clientId");
+
+                    b.HasIndex("email")
                         .IsUnique();
 
-                    b.HasIndex("Rut")
+                    b.HasIndex("rut")
                         .IsUnique();
 
                     b.ToTable("Client");
