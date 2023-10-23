@@ -3,26 +3,26 @@
 namespace ClientManager.Middleware
 {
 
-    public static class LogAnswerHTTPExtensions
+    public static class LogAnswerHttpExtensions
     {
-        public static IApplicationBuilder UseLogAnswerHTTP(this IApplicationBuilder app)
+        public static IApplicationBuilder UseLogAnswerHttp(this IApplicationBuilder app)
         {
-            return app.UseMiddleware<LogAnswerHTTP>();
+            return app.UseMiddleware<LogAnswerHttp>();
         }
     }
 
 
-    public class LogAnswerHTTP
+    public class LogAnswerHttp
     {
-        private readonly RequestDelegate next;
-        private readonly ILogger<LogAnswerHTTP> logger;
+        private readonly RequestDelegate _next;
+        private readonly ILogger<LogAnswerHttp> _logger;
         private readonly LogHttpService _logService;
 
-        public LogAnswerHTTP(RequestDelegate next,
-            ILogger<LogAnswerHTTP> logger, LogHttpService logService)
+        public LogAnswerHttp(RequestDelegate next,
+            ILogger<LogAnswerHttp> logger, LogHttpService logService)
         {
-            this.next = next;
-            this.logger = logger;
+            this._next = next;
+            this._logger = logger;
             _logService = logService;
         }
 
@@ -33,7 +33,7 @@ namespace ClientManager.Middleware
                 var body = context.Response.Body;
                 context.Response.Body = ms;
 
-                await next(context);
+                await _next(context);
 
                 ms.Seek(0, SeekOrigin.Begin);
                 string answer = new StreamReader(ms).ReadToEnd();
@@ -46,7 +46,7 @@ namespace ClientManager.Middleware
                 string responseInfo = $"Response {context.Response.StatusCode} - {context.Response.ContentType} {context.Response.ContentLength} bytes {context.Response.Headers["elapsed-time"]}ms";
 
                 _logService.WriteHttp($"{requestInfo} - {responseInfo}");
-                logger.LogInformation(answer);
+                _logger.LogInformation(answer);
             }
         }
     }

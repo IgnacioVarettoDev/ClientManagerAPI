@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ClientManagerDTO.ClientDTO
 {
-    public class ClientDTO: CreateClientDTO
+    public class ClientDto: CreateClientDto
     {
         [Required(ErrorMessage = "El campo {0} es requerido.")]
         public Guid ClientId { get; set; }

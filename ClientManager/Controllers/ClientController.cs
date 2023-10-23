@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using ClientManagerDTO.ClientDTO;
 using static ClientManager.Constant.NameEndpointMethods.NameEndpointClient;
 using ExceptionHandler = ClientManagerDAO.Exceptions.ExceptionHandler;
-using ClientManagerDTO.Entity;
+using ClientManagerDao.ClientManager;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,182 +25,143 @@ namespace ClientManager.Controllers
         }
 
         [HttpGet(template: "ListClient", Name = GetAll)]
-        public async Task<ActionResult<List<ClientDTO>>> GetAllClient()
+        public async Task<ActionResult<List<ClientDto>>> GetAllClient()
         {
             try
             {
-                var clientList = await _context.Client.ToListAsync();
+                var clientDao = new ClientDao(_context, _mapper);
+                var result = await clientDao.GetAllClients();
 
-                if (clientList.Count < 1)
+                if (result.Count < 1)
                 {
                     return NotFound("No se encontraron clientes.");
                 }
 
-                var clientListMapping = _mapper.Map<List<ClientDTO>>(clientList);
-
-                return Ok(clientListMapping);
+                return Ok(result);
             }
             catch (ValidationException)
             {
-                return BadRequest(error: "La solicitud es inválida.");
+                return BadRequest("La solicitud es inválida.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return StatusCode(500, "Se produjo un error interno en el servidor.");
             }
         }
 
         [HttpGet(template: "{clientId:guid}", Name = GetOneById)]
-        public async Task<ActionResult<ClientDTO>> GetOneClientById([FromRoute] Guid clientId)
+        public async Task<ActionResult<ClientDto>> GetOneClientById([FromRoute] Guid clientId)
         {
             try
             {
-                var existClient = await _context.Client.FirstOrDefaultAsync(client => client.clientId == clientId);
-                if (existClient == null)
-                {
-                    return NotFound("No se encontro el cliente.");
-                }
-                var clientMapping = _mapper.Map<ClientDTO>(existClient);
+                var clientDao = new ClientDao(_context, _mapper);
+                var result = await clientDao.GetClientById(clientId);
 
-                return Ok(clientMapping);
+                if (result == null)
+                {
+                    return NotFound("No se encontró el cliente.");
+                }
+
+                return Ok(result);
             }
+        
             catch (ValidationException)
             {
-                return BadRequest(error: "La solicitud es inválida.");
+                return BadRequest("La solicitud es inválida.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return StatusCode(500, "Se produjo un error interno en el servidor.");
             }
         }
 
         [HttpGet(template: "search", Name = GetSearch)]
-        public async Task<ActionResult<ClientDTO[]>> GetSearchClient([FromQuery] string search)
+        public async Task<ActionResult<ClientDto[]>> GetSearchClient([FromQuery] string search)
         {
             try
             {
-                var results = await _context.Client
-                    .Where(e =>
-                        e.rut.Contains(search) ||
-                        e.firstName.Contains(search) ||
-                        e.lastName.Contains(search) ||
-                        e.married.ToString().Contains(search) ||
-                        e.address.Contains(search) ||
-                        (e.phoneNumber != null && e.phoneNumber.Contains(search)) ||
-                        e.email.Contains(search) || 
-                        (e.dateOfBirth != null && e.dateOfBirth.ToString().Contains(search))||
-                        e.age.ToString().Contains(search)
-                    )
-                    .ToListAsync();
+                var clientDao = new ClientDao(_context, _mapper);
+                var results = await clientDao.SearchClients(search);
 
                 if (results.Count < 1)
                 {
-                    return NotFound("No se encontro informacion con esta busqueda.");
+                    return NotFound("No se encontró información con esta búsqueda.");
                 }
-                var clientListMapping = _mapper.Map<ClientDTO>(results);
 
-                return Ok(clientListMapping);
+                return Ok(results);
             }
             catch (ValidationException)
             {
-                return BadRequest(error: "La solicitud es inválida.");
+                return BadRequest("La solicitud es inválida.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return StatusCode(500, "Se produjo un error interno en el servidor.");
             }
-
         }
 
         [HttpPost(Name = CreateNew)]
-        public async Task<ActionResult> CreateNewClient([FromBody] CreateClientDTO clientCreate)
+        public async Task<ActionResult> CreateNewClient([FromBody] CreateClientDto clientCreate)
         {
             try
             {
-                var client = _mapper.Map<Client>(clientCreate);
-                client.clientId = Guid.NewGuid();
-                client.registerClient = DateTime.Now;
-                _context.Add(client);
-
-                await _context.SaveChangesAsync();
+                var clientDao = new ClientDao(_context, _mapper);
+                await clientDao.CreateNewClient(clientCreate);
                 return Ok();
             }
             catch (ValidationException)
             {
-                return BadRequest(error: "La solicitud es inválida.");
+                return BadRequest("La solicitud es inválida.");
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException ex) when (ExceptionHandler.IsUniqueViolationException(ex))
             {
-                if (ExceptionHandler.IsUniqueViolationException(ex))
-                {
-                    return BadRequest(error: "El registro tiene valores que ya existen en la Base de datos. Puede ser Rut o Email");
-                }
-
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return BadRequest("El registro tiene valores que ya existen en la Base de datos. Puede ser Rut o Email.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return StatusCode(500, "Se produjo un error interno en el servidor.");
             }
         }
 
         [HttpPut(template: "{clientId:guid}", Name = UpdateOne)]
-        public async Task<ActionResult> UpdateOneClient([FromRoute] Guid clientId, [FromBody] UpdateClientDTO clientUpdate)
+        public async Task<ActionResult> UpdateOneClient([FromRoute] Guid clientId, [FromBody] UpdateClientDto clientUpdate)
         {
             try
             {
-                //var existClient = await _context.Client.AnyAsync(clientAny => clientAny.clientId == clientId);
-
-                var existClient = await _context.Client.FirstOrDefaultAsync(client => client.clientId == clientId);
-                if (existClient == null)
-                {
-                    return NotFound("No se encontro el cliente.");
-                }
-
-                _mapper.Map(clientUpdate, existClient);
-
-                existClient.updateClient = DateTime.Now;
-
-                _context.Entry(existClient).State = EntityState.Modified;
-
-                await _context.SaveChangesAsync();
-
+                var clientDao = new ClientDao(_context, _mapper);
+                await clientDao.UpdateClient(clientId, clientUpdate);
                 return Ok();
             }
             catch (ValidationException)
             {
-                return BadRequest(error: "La solicitud es inválida.");
+                return BadRequest("La solicitud es inválida.");
+            }
+            catch (DbUpdateException ex) when (ExceptionHandler.IsUniqueViolationException(ex))
+            {
+                return BadRequest("El registro tiene valores que ya existen en la Base de datos. Puede ser Rut o Email.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return StatusCode(500, "Se produjo un error interno en el servidor.");
             }
         }
 
         [HttpDelete(template: "{clientId:guid}", Name = DeleteOneById)]
         public async Task<ActionResult> DeleteOneClientById([FromRoute] Guid clientId)
         {
-
             try
             {
-                var existClient = await _context.Client.AnyAsync(clientAny => clientAny.clientId == clientId);
-                if (!existClient)
-                {
-                    return NotFound("No se encontro el cliente.");
-                }
-
-                _context.Remove(entity: new Client() { clientId = clientId });
-
-                await _context.SaveChangesAsync();
+                var clientDao = new ClientDao(_context, _mapper);
+                await clientDao.DeleteClientById(clientId);
                 return Ok();
             }
             catch (ValidationException)
             {
-                return BadRequest(error: "La solicitud es inválida.");
+                return BadRequest("La solicitud es inválida.");
             }
             catch (Exception)
             {
-                return StatusCode(500, value: "Se produjo un error interno en el servidor.");
+                return StatusCode(500, "Se produjo un error interno en el servidor.");
             }
         }
     }

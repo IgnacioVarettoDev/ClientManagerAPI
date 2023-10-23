@@ -40,7 +40,7 @@ namespace ClientManager
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            app.UseLogAnswerHTTP();
+            app.UseLogAnswerHttp();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

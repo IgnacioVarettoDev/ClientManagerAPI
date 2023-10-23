@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using static ClientManagerDTO.Validation.DateOfBirthValidation;
 namespace ClientManagerDTO.ClientDTO;
 
-public class UpdateClientDTO : IValidatableObject
+public class UpdateClientDto : IValidatableObject
 {
     [Required(ErrorMessage = "El campo {0} es requerido.")]
     [StringLength(maximumLength: 30, ErrorMessage = "El campo {0} no debe tener más de {1} caracteres.")]
