@@ -1,4 +1,4 @@
-# Release Notes - v0.0.0
+# Release Notes - v0.0.2
 
 ## Novedades
 - **Modularidad:** Mejorar la estructura del proyecto.
