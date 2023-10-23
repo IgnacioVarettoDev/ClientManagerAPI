@@ -8,9 +8,7 @@ namespace ClientManager.Utilities
     {
         public AutoMapperProfile()
         {
-
-
-            CreateMap<UpdateClientDTO, Client>()
+            CreateMap<UpdateClientDto, Client>()
                 .ForMember(dest => dest.firstName, opt => opt.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.lastName, opt => opt.MapFrom(src => src.LastName))
                 .ForMember(dest => dest.married, opt => opt.MapFrom(src => src.Married))
@@ -20,10 +18,10 @@ namespace ClientManager.Utilities
                 .ForMember(dest => dest.phoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
                 .ForMember(dest => dest.email, opt => opt.MapFrom(src => src.Email));
 
-            CreateMap<CreateClientDTO, Client>()
+            CreateMap<CreateClientDto, Client>()
                 .ForMember(dest => dest.rut, opt => opt.MapFrom(src => src.Rut));
 
-            CreateMap<ClientDTO, Client>()
+            CreateMap<ClientDto, Client>()
                 .ForMember(dest => dest.clientId, opt => opt.MapFrom(src => src.ClientId))
                 .ReverseMap();
         }

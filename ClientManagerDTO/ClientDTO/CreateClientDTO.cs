@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClientManagerDTO.ClientDTO
 {
-    public class CreateClientDTO : UpdateClientDTO
+    public class CreateClientDto : UpdateClientDto
     {
         [Required(ErrorMessage = "El campo {0} es requerido.")]
         [MinLength(9, ErrorMessage = "El campo {0} debe tener como mínimo {1} caracteres.")]

@@ -5,9 +5,11 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManager", "ClientManager\ClientManager.csproj", "{6A12CFFF-30D2-4F7D-BC09-D2D6DF5A6AD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManagerDTO", "ClientManagerDTO\ClientManagerDTO.csproj", "{A3BD3F16-2DEB-469E-B246-D6DAFBD37EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManagerDto", "ClientManagerDTO\ClientManagerDto.csproj", "{A3BD3F16-2DEB-469E-B246-D6DAFBD37EB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManagerDAO", "ClientManagerDAO\ClientManagerDAO.csproj", "{903C8AB9-A8E9-4186-B4D1-2B41D09B80DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManagerDao", "ClientManagerDAO\ClientManagerDao.csproj", "{903C8AB9-A8E9-4186-B4D1-2B41D09B80DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionBd", "bdConnection\ConnectionBd.csproj", "{2E764FC3-2ABB-4013-A5D3-058203D56824}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{903C8AB9-A8E9-4186-B4D1-2B41D09B80DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{903C8AB9-A8E9-4186-B4D1-2B41D09B80DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{903C8AB9-A8E9-4186-B4D1-2B41D09B80DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E764FC3-2ABB-4013-A5D3-058203D56824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E764FC3-2ABB-4013-A5D3-058203D56824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E764FC3-2ABB-4013-A5D3-058203D56824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E764FC3-2ABB-4013-A5D3-058203D56824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
