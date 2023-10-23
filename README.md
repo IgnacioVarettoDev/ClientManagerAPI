@@ -3,6 +3,14 @@
 
 Este proyecto es una API de gestión de clientes desarrollada en .NET. Permite realizar operaciones básicas de creación, actualización y obtención de datos de clientes. La API está diseñada siguiendo buenas prácticas de la industria y utiliza una base de datos SQL Lite para el almacenamiento de datos.
 
+## Tecnologías Utilizadas
+- **AutoMapper**: Utilizamos AutoMapper para mapear los objetos DTO (Data Transfer Objects) a las entidades del modelo de datos y viceversa.
+
+- **Entity Framework SQLite**: Sistema de gestión de bases de datos.
+
+- **Entity Framework Tools**: Para crear y administrar la base de datos SQLite que respalda esta API. Estas herramientas facilitan la generación y gestión de esquemas de base de datos a través de migraciones y scripts.
+
+
 ## Instalación y Ejecución
 
 Para ejecutar este proyecto en tu entorno local, sigue los siguientes pasos:
@@ -16,12 +24,6 @@ git clone https://github.com/IgnacioVarettoDev/ClientManagerAPI
 3. Asegúrate de que tengas instalado .NET Core en tu sistema.
 
 4. En el archivo de configuración `appsettings.json`, se encuentra la cadena de conexión a la base de datos SQL Lite.
-
-5. Abre una terminal en el directorio del proyecto y ejecuta los siguientes comandos:
-
-dotnet restore
-dotnet build
-dotnet run
 
 Esto iniciará la API en tu máquina local.
 
